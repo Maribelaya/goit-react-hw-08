@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  gap: 12px;
+}
+.link {
+  color: #333;
+  text-decoration: none;
+}
+.link.active {
+  font-weight: bold;
+  color: teal;
+}
