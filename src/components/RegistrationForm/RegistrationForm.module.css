@@ -1,4 +1,4 @@
-.form {
+/* .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -30,9 +30,9 @@
 .error {
   color: red;
   font-size: 0.875rem;
-}
+} */
 
-/* .container {
+.container {
   max-width: 400px;
   margin: 0 auto;
   padding: 2rem;
@@ -86,4 +86,4 @@
 
 .button:hover {
   background-color: #218838;
-} */
+}
