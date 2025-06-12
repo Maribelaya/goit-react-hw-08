@@ -14,15 +14,27 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route
           path="/register"
-          element={<RestrictedRoute component={RegistrationPage} />}
+          element={
+            <RestrictedRoute>
+              <RegistrationPage />
+            </RestrictedRoute>
+          }
         />
         <Route
           path="/login"
-          element={<RestrictedRoute component={LoginPage} />}
+          element={
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
+          }
         />
         <Route
           path="/contacts"
-          element={<PrivateRoute component={ContactsPage} />}
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
         />
       </Route>
     </Routes>

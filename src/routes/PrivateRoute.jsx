@@ -2,13 +2,13 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { selectIsLoggedIn, selectIsRefreshing } from "../redux/auth/selectors";
 
-export default function PrivateRoute({ component: Component }) {
+export default function PrivateRoute({ children }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
 
   if (isRefreshing) {
-    return <p>Loading...</p>; // або спіннер
+    return <p>Loading...</p>; // можна замінити на спінер чи індикатор завантаження
   }
 
-  return isLoggedIn ? <Component /> : <Navigate to="/login" />;
+  return isLoggedIn ? children : <Navigate to="/login" replace />;
 }
