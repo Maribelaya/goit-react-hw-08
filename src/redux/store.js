@@ -3,22 +3,25 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
-import contactsReducer from "./contacts/contactsSlice";
+import { contactsReducer } from "./contacts/slice";
+import { filtersReducer } from "./filters/slice";
+import { authReducer } from "./auth/slice";
+
+// persist тільки auth, інші — не потрібно
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
+  filters: filtersReducer,
+  auth: persistReducer(authPersistConfig, authReducer),
 });
 
-const persistConfig = {
-  key: "root",
-  storage,
-  // no whitelist — персиститься все
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

@@ -34,4 +34,5 @@ const contactsSlice = createSlice({
   },
 });
 
-export default contactsSlice.reducer;
+// ✅ Іменований експорт
+export const contactsReducer = contactsSlice.reducer;
