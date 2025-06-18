@@ -1,6 +1,14 @@
 import { useDispatch } from "react-redux";
-import { login } from "../redux/auth/operations";
-import { Formik, Form, Field } from "formik";
+import { logIn } from "../redux/auth/operations";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  email: Yup.string().email("Некоректний email").required("Обов’язкове поле"),
+  password: Yup.string()
+    .min(6, "Пароль має бути не менше 6 символів")
+    .required("Обов’язкове поле"),
+});
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -12,9 +20,10 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h2>Log In</h2>
+      <h2>Увійти</h2>
       <Formik
         initialValues={{ email: "", password: "" }}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         <Form>
@@ -22,11 +31,23 @@ export default function LoginPage() {
             Email:
             <Field name="email" type="email" />
           </label>
+          <ErrorMessage
+            name="email"
+            component="div"
+            style={{ color: "red", marginBottom: "10px" }}
+          />
+
           <label>
-            Password:
+            Пароль:
             <Field name="password" type="password" />
           </label>
-          <button type="submit">Log In</button>
+          <ErrorMessage
+            name="password"
+            component="div"
+            style={{ color: "red", marginBottom: "10px" }}
+          />
+
+          <button type="submit">Увійти</button>
         </Form>
       </Formik>
     </div>
