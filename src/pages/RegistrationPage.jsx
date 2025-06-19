@@ -3,6 +3,7 @@ import { register } from "../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import styles from "./RegistrationPage.module.css";
 
 const validationSchema = Yup.object({
   name: Yup.string()
