@@ -14,15 +14,16 @@ const validationSchema = Yup.object({
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // <== використовуємо для перенаправлення
+  const navigate = useNavigate(); // <==  для перенаправлення
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await dispatch(register(values)).unwrap(); // unwrap для ловлі помилки
+      await dispatch(register(values)).unwrap();
       toast.success("Реєстрація успішна!");
       resetForm();
-      navigate("/contacts"); // або "/login", якщо хочеш, щоб логінився окремо
+      navigate("/contacts");
     } catch (err) {
+      console.error("Помилка реєстрації:", err);
       toast.error(err || "Помилка реєстрації");
     }
   };

@@ -30,20 +30,26 @@ export default function ContactForm() {
       <label>
         Name
         <input
+          type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          className={styles.input}
         />
       </label>
       <label>
         Number
         <input
+          type="tel"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           required
+          className={styles.input}
         />
       </label>
-      <button type="submit">Add contact</button>
+      <button type="submit" className={styles.button}>
+        Add contact
+      </button>
     </form>
   );
 }

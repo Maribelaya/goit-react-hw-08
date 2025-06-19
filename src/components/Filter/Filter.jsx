@@ -14,6 +14,7 @@ export default function Filter() {
         type="text"
         value={filter}
         onChange={(e) => dispatch(setFilter(e.target.value))}
+        className={styles.input}
       />
     </label>
   );

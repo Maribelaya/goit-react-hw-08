@@ -7,9 +7,9 @@ export default function Navigation() {
       <NavLink to="/" className={css.link}>
         Головна
       </NavLink>
-      <NavLink to="/contacts" className={css.link}>
+      {/* <NavLink to="/contacts" className={css.link}>
         Контакти
-      </NavLink>
+      </NavLink> */}
     </nav>
   );
 }
