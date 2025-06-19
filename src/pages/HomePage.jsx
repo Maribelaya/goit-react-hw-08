@@ -5,10 +5,6 @@ export default function HomePage() {
   return (
     <div className={styles.container}>
       <h1>Вітаємо в додатку Книга контактів!</h1>
-      <p>
-        Це домашня сторінка, тут можна розмістити інформацію про додаток або
-        розробника.
-      </p>
     </div>
   );
 }
