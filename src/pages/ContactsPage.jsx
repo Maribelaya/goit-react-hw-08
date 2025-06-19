@@ -47,19 +47,14 @@ export default function ContactsPage() {
 
       <h2>Ваші дані</h2>
 
-      {/* Форма додавання контактів */}
       {/* <ContactForm /> */}
 
-      {/* Список контактів */}
       {/* <ContactList /> */}
 
-      {/* Показуємо імейл користувача */}
       <div style={{ marginTop: "20px" }}>
         <p>
           <strong>Email:</strong> {user?.email}
         </p>
-
-        {/* Пароль зазвичай не показують, але якщо потрібно — можна зробити так: */}
         <p>
           <strong>Пароль:</strong> {user?.password}
         </p>
