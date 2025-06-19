@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { login } from "../../redux/auth/operations";
-import css from "./LoginForm.module.css";
+import styles from "./LoginForm.module.css";
 
 //import { useSelector } from "react-redux"; //+++
 import { selectIsLoggedIn } from "../../redux/auth/selectors";

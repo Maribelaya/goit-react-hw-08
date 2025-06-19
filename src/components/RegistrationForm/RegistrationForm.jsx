@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { register } from "../../redux/auth/operations";
-import css from "./RegistrationForm.module.css";
+import styles from "./RegistrationForm.module.css";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(2, "Мінімум 2 символи").required("Обов'язково"),
