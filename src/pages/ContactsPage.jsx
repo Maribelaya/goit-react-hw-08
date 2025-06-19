@@ -1,29 +1,3 @@
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchContacts } from "../redux/contacts/operations";
-// import { selectUserName } from "../redux/auth/selectors.js";
-
-// import ContactForm from "../components/ContactForm/ContactForm";
-// import ContactList from "../components/ContactList/ContactList";
-
-// export default function ContactsPage() {
-//   const dispatch = useDispatch();
-//   const userName = useSelector(selectUserName);
-
-//   useEffect(() => {
-//     dispatch(fetchContacts());
-//   }, [dispatch]);
-
-//   return (
-//     <div>
-//       <h1>Вітаю, {userName}!</h1>
-//       <h2>Ваші контакти</h2>
-//       {/* <ContactForm />
-//       <ContactList /> */}
-//     </div>
-//   );
-// }
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchContacts } from "../redux/contacts/operations";
@@ -34,7 +8,6 @@ import ContactList from "../components/ContactList/ContactList";
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
-  // отримуємо повний об'єкт користувача
   const user = useSelector(selectUser);
 
   useEffect(() => {
@@ -46,10 +19,6 @@ export default function ContactsPage() {
       <h1>Вітаю, {user?.name}!</h1>
 
       <h2>Ваші дані</h2>
-
-      {/* <ContactForm /> */}
-
-      {/* <ContactList /> */}
 
       <div style={{ marginTop: "20px" }}>
         <p>

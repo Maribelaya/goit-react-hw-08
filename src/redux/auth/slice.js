@@ -10,9 +10,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    // додаткові редюсери, якщо потрібні
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase("auth/register/fulfilled", (state, action) => {
@@ -44,5 +42,4 @@ const authSlice = createSlice({
   },
 });
 
-// Якщо немає додаткових редюсерів, export default authSlice.reducer достатньо
 export default authSlice.reducer;

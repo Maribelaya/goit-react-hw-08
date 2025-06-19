@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 
 import authReducer from "./auth/slice";
 import contactsReducer from "./contacts/slice";
-import filtersReducer from "./filters/slice"; // імпорт default експорту
+import filtersReducer from "./filters/slice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"], // зберігаємо auth для токена
+  whitelist: ["auth"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
