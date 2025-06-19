@@ -13,12 +13,11 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        {/* Публічні маршрути */}
         <Route
           path="/register"
           element={
             <RestrictedRoute
-              component={RegistrationPage}
+              component={<RegistrationPage />}
               redirectTo="/contacts"
             />
           }
@@ -26,15 +25,13 @@ const App = () => {
         <Route
           path="/login"
           element={
-            <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
           }
         />
-
-        {/* Приватний маршрут */}
         <Route
           path="/contacts"
           element={
-            <PrivateRoute component={ContactsPage} redirectTo="/login" />
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
           }
         />
       </Route>
