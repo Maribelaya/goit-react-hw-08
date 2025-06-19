@@ -1,3 +1,4 @@
+import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
@@ -20,15 +21,6 @@ const App = () => {
             </RestrictedRoute>
           }
         />
-        {/* <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              component={<RegistrationPage />}
-              redirectTo="/contacts"
-            />
-          }
-        /> */}
         <Route
           path="/login"
           element={
@@ -37,27 +29,14 @@ const App = () => {
             </RestrictedRoute>
           }
         />
-        {/* <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
-          }
-        /> */}
-        {/* <Route
-          path="/contacts"
-          element={
-            <PrivateRoute component={<ContactsPage />} redirectTo="/contacts" />
-          }
-        /> */}
-        {/* <Route
+        <Route
           path="/contacts"
           element={
             <PrivateRoute redirectTo="/login">
               <ContactsPage />
             </PrivateRoute>
           }
-        /> */}
-        <Route path="/contacts" element={<ContactsPage />} />
+        />
       </Route>
     </Routes>
   );
