@@ -12,8 +12,15 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-
         <Route
+          path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts">
+              <RegistrationPage />
+            </RestrictedRoute>
+          }
+        />
+        {/* <Route
           path="/register"
           element={
             <RestrictedRoute
@@ -21,19 +28,36 @@ const App = () => {
               redirectTo="/contacts"
             />
           }
-        />
+        /> */}
         <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts">
+              <LoginPage />
+            </RestrictedRoute>
+          }
+        />
+        {/* <Route
           path="/login"
           element={
             <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/contacts"
           element={
-            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            <PrivateRoute component={<ContactsPage />} redirectTo="/contacts" />
           }
-        />
+        /> */}
+        {/* <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login">
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        /> */}
+        <Route path="/contacts" element={<ContactsPage />} />
       </Route>
     </Routes>
   );

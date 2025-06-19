@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { selectIsLoggedIn } from "../redux/auth/selectors";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Некоректний email").required("Обов’язкове поле"),

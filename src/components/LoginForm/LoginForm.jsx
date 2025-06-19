@@ -4,6 +4,9 @@ import * as Yup from "yup";
 import { login } from "../../redux/auth/operations";
 import css from "./LoginForm.module.css";
 
+//import { useSelector } from "react-redux"; //+++
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+
 const validationSchema = Yup.object({
   email: Yup.string().email("Невірний формат").required("Обов'язково"),
   password: Yup.string().min(6, "Мінімум 6 символів").required("Обов'язково"),
@@ -16,6 +19,8 @@ export default function LoginForm() {
     dispatch(login(values));
     resetForm();
   };
+
+  //const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <div className={css.container}>
