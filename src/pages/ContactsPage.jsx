@@ -1,33 +1,36 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts } from "../redux/contacts/operations";
-import { selectUser } from "../redux/auth/selectors";
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectContacts } from "../redux/contacts/selectors";
+import { selectFilter } from "../redux/filters/selectors";
 import ContactForm from "../components/ContactForm/ContactForm";
 import ContactList from "../components/ContactList/ContactList";
+import SearchBox from "../components/SearchBox/SearchBox";
 
-export default function ContactsPage() {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+const ContactsPage = () => {
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  const normalizedFilter = filter.toLowerCase();
+
+  const filteredContacts = contacts.filter(({ name }) =>
+    name.toLowerCase().includes(normalizedFilter)
+  );
 
   return (
     <div>
-      <h1>Вітаю, {user?.name}!</h1>
-
-      <h2>Ваші дані</h2>
-
-      <div style={{ marginTop: "20px" }}>
-        <p>
-          <strong>Email:</strong> {user?.email}
-        </p>
-        <p>
-          <strong>Пароль:</strong> {user?.password}
-        </p>
-      </div>
+      <h1>Контакти</h1>
+      <ContactForm />
+      <SearchBox />
+      <ContactList />
+      <ul>
+        {filteredContacts.map(({ id, name, number }) => (
+          <li key={id}>
+            {name}: {number}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+export default ContactsPage;

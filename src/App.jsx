@@ -1,18 +1,36 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+
+import { refreshUser } from "./redux/auth/operations";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ContactsPage from "./pages/ContactsPage";
+
 import RestrictedRoute from "./routes/RestrictedRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+
         <Route
           path="/register"
           element={
@@ -21,6 +39,7 @@ const App = () => {
             </RestrictedRoute>
           }
         />
+
         <Route
           path="/login"
           element={
@@ -29,6 +48,7 @@ const App = () => {
             </RestrictedRoute>
           }
         />
+
         <Route
           path="/contacts"
           element={
@@ -37,6 +57,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
   );

@@ -16,7 +16,7 @@ export default function ContactForm() {
     const duplicate = contacts.find((c) => c.name.toLowerCase() === normalized);
 
     if (duplicate) {
-      alert(`${name} is already in contacts.`);
+      alert(`Контакт з ім’ям ${name} вже існує.`);
       return;
     }
 
@@ -28,27 +28,29 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        Name
+        Ім’я
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          placeholder="Введіть ім’я"
           className={styles.input}
         />
       </label>
       <label>
-        Number
+        Номер
         <input
           type="tel"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           required
+          placeholder="Введіть номер телефону"
           className={styles.input}
         />
       </label>
       <button type="submit" className={styles.button}>
-        Add contact
+        Додати контакт
       </button>
     </form>
   );

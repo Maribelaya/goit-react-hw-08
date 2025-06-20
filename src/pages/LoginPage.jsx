@@ -15,7 +15,7 @@ export default function LoginPage() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn(values)); // виправлено logIn, було login
+    dispatch(logIn(values));
     resetForm();
   };
 
