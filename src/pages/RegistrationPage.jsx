@@ -15,19 +15,16 @@ const validationSchema = Yup.object({
     .required("Обов’язкове поле"),
 });
 
-export default function RegisterPage() {
+export default function RegistrationPage() {
   const dispatch = useDispatch();
   const [message, setMessage] = useState(null);
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log("Відправка форми:", values);
     try {
       await dispatch(register(values)).unwrap();
-      console.log("Реєстрація успішна");
       setMessage({ type: "success", text: "Реєстрація успішна!" });
       resetForm();
     } catch (error) {
-      console.error("Помилка реєстрації:", error);
       setMessage({
         type: "error",
         text: error.message || "Помилка реєстрації",
@@ -36,120 +33,50 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h2>Реєстрація</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Реєстрація</h2>
+
       {message && (
         <div
-          style={{
-            color: message.type === "error" ? "red" : "green",
-            marginBottom: "10px",
-          }}
+          className={message.type === "error" ? styles.error : styles.success}
         >
           {message.text}
         </div>
       )}
+
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <label>
+        <Form className={styles.form}>
+          <label className={styles.label}>
             Ім'я:
-            <Field name="name" type="text" />
+            <Field name="name" type="text" className={styles.input} />
           </label>
-          <ErrorMessage name="name" component="div" style={{ color: "red" }} />
+          <ErrorMessage name="name" component="div" className={styles.error} />
 
-          <label>
+          <label className={styles.label}>
             Email:
-            <Field name="email" type="email" />
+            <Field name="email" type="email" className={styles.input} />
           </label>
-          <ErrorMessage name="email" component="div" style={{ color: "red" }} />
+          <ErrorMessage name="email" component="div" className={styles.error} />
 
-          <label>
+          <label className={styles.label}>
             Пароль:
-            <Field name="password" type="password" />
+            <Field name="password" type="password" className={styles.input} />
           </label>
           <ErrorMessage
             name="password"
             component="div"
-            style={{ color: "red" }}
+            className={styles.error}
           />
 
-          <button type="submit">Зареєструватися</button>
+          <button type="submit" className={styles.button}>
+            Зареєструватися
+          </button>
         </Form>
       </Formik>
     </div>
   );
 }
-
-// import React, { useState } from "react";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
-
-// const validationSchema = Yup.object({
-//   name: Yup.string()
-//     .min(2, "Ім'я має бути не менше 2 символів")
-//     .required("Обов’язкове поле"),
-//   email: Yup.string().email("Некоректний email").required("Обов’язкове поле"),
-//   password: Yup.string()
-//     .min(6, "Пароль має бути не менше 6 символів")
-//     .required("Обов’язкове поле"),
-// });
-
-// export default function RegisterPage() {
-//   const [message, setMessage] = useState(null);
-
-//   const handleSubmit = (values, { resetForm }) => {
-//     //console.log("Відправка форми:", values);
-//     setMessage({ type: "success", text: "Форма успішно відправлена!" });
-//     resetForm();
-//   };
-
-//   return (
-//     <div>
-//       <h2>Реєстрація</h2>
-//       {message && (
-//         <div
-//           style={{
-//             color: message.type === "error" ? "red" : "green",
-//             marginBottom: "10px",
-//           }}
-//         >
-//           {message.text}
-//         </div>
-//       )}
-//       <Formik
-//         initialValues={{ name: "", email: "", password: "" }}
-//         validationSchema={validationSchema}
-//         onSubmit={handleSubmit}
-//       >
-//         <Form>
-//           <label>
-//             Ім'я:
-//             <Field name="name" type="text" />
-//           </label>
-//           <ErrorMessage name="name" component="div" style={{ color: "red" }} />
-
-//           <label>
-//             Email:
-//             <Field name="email" type="email" />
-//           </label>
-//           <ErrorMessage name="email" component="div" style={{ color: "red" }} />
-
-//           <label>
-//             Пароль:
-//             <Field name="password" type="password" />
-//           </label>
-//           <ErrorMessage
-//             name="password"
-//             component="div"
-//             style={{ color: "red" }}
-//           />
-
-//           <button type="submit">Зареєструватися</button>
-//         </Form>
-//       </Formik>
-//     </div>
-//   );
-// }
