@@ -22,13 +22,6 @@ const ContactsPage = () => {
       <ContactForm />
       <SearchBox />
       <ContactList />
-      <ul>
-        {filteredContacts.map(({ id, name, number }) => (
-          <li key={id}>
-            {name}: {number}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
