@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { logIn } from "../redux/auth/operations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { selectIsLoggedIn } from "../redux/auth/selectors";
+import styles from "./LoginPage.module.css";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Некоректний email").required("Обов’язкове поле"),
@@ -15,40 +15,39 @@ export default function LoginPage() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(login(values));
+    dispatch(logIn(values)); // виправлено logIn, було login
     resetForm();
   };
 
   return (
-    <div>
-      <h2>Увійти</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Увійти</h2>
+
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <label>
+        <Form className={styles.form}>
+          <label className={styles.label}>
             Email:
-            <Field name="email" type="email" />
+            <Field name="email" type="email" className={styles.input} />
           </label>
-          <ErrorMessage
-            name="email"
-            component="div"
-            style={{ color: "red", marginBottom: "10px" }}
-          />
+          <ErrorMessage name="email" component="div" className={styles.error} />
 
-          <label>
+          <label className={styles.label}>
             Пароль:
-            <Field name="password" type="password" />
+            <Field name="password" type="password" className={styles.input} />
           </label>
           <ErrorMessage
             name="password"
             component="div"
-            style={{ color: "red", marginBottom: "10px" }}
+            className={styles.error}
           />
 
-          <button type="submit">Увійти</button>
+          <button type="submit" className={styles.button}>
+            Увійти
+          </button>
         </Form>
       </Formik>
     </div>
