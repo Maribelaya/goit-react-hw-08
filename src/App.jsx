@@ -10,7 +10,6 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ContactsPage from "./pages/ContactsPage";
-
 import RestrictedRoute from "./routes/RestrictedRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 
